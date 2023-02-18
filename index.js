@@ -1,7 +1,7 @@
 function  App(){
     const [todos, setTodos] = React.useState([
         {
-            text: 'learn react',
+            text: 'learn this',
             isCompleted: false,
         },
         {
@@ -13,29 +13,26 @@ function  App(){
             isCompleted: false,
         }  
     ]);
-    const [value, setValue] = React.useState('');
-    const handleSubmit = e => {
-        e.preventDefault();
-        if(!value) return;
-        const newTodos = [...todos, {text:value, isCompleted:false}];
+    
+    const addTodo = text => {
+        const newTodos = [...todos, {text, isCompleted:false}];
         setTodos(newTodos);
-        setValue('');
+    }
+
+    const removeTodo = index => {
+        let temp = [...todos];
+        temp.splice(index,1);
+        setTodos(temp);
     }
     return(<>
-        {todos.map((todo,i) => <div className="todo" key={i}>{todo.text}</div>)}
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                className="input"
-                value={value}
-                placeholder="Add Todo..."
-                onChange={e => setValue(e.target.value)}
-            />
-        </form>
+        {todos.map((todo,i) => (<Todo key={i} index={i} todo={todo} remove={removeTodo} />))}
+
+        <TodoForm addTodo={addTodo} />
+
     </>);
 }
 
 ReactDOM.render(
     <App/>,
     document.getElementById('root')
-)
+);
