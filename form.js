@@ -9,10 +9,10 @@ function TodoForm({addTodo}){
     }
   
     return (
-      <form onSubmit={handleSubmit}>
+      <form className="p-2 mb-2 bg-dark border-bottom border-dark" onSubmit={handleSubmit}>
         <input 
           type="text"
-          className="input"
+          className="form-control form-control-dark"
           value={value}
           placeholder="Add Todo..."
           onChange={e => setValue(e.target.value)} />

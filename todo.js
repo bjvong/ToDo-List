@@ -3,5 +3,5 @@ function Todo({todo,index,remove}){
       console.log('Ping:',index);
       remove(index);
     }
-    return <div className="todo" onClick={handle}>{todo.text} (-)</div>
+    return <div className="dropdown-item d-flex align-items-center gap-2 py-2" onClick={handle}>&#8226;  {todo.text}</div>
   }
